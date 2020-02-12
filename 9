@@ -1,0 +1,17 @@
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+
+
+def name_in_zerk(name):
+    fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 100)
+    img = Image.new('RGBA', (1000, 1000), 'purple')
+    txt = Image.new('RGBA', img.size, (255, 255, 255, 0))
+    draw = ImageDraw.Draw(txt)
+    draw.text((100, 500), "САРГИН ЯРОСЛАВ", font=fnt, fill=(255, 255, 255, 128))
+    out = Image.alpha_composite(img, txt)
+    out = out.transpose(Image.FLIP_LEFT_RIGHT)
+    out.save(name)
+
+
+name_in_zerk('myname.png')
