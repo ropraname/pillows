@@ -1,0 +1,16 @@
+from PIL import Image
+kot_or = Image.open('gifka3.jpg')
+width, height = kot_or.size
+left = width/3.8
+top = height/6
+right = 3 * width/4.2
+bottom = 3 * height/3.5
+cropped_kot = kot_or.crop((left, top, right, bottom))
+cropped_kot.save('gifka4.jpg')
+rotated_cropped_kot = cropped_kot.rotate(180)
+rotated_cropped_kot = rotated_cropped_kot.resize(kot_or.size)
+rotated_cropped_kot.save('gifka2.jpg')
+kot = rotated_cropped_kot.copy()
+kot_or.paste(kot, (100, 100))
+kot_or.paste(cropped_kot, (200, 200))
+kot_or.save('gifka1.jpg')
