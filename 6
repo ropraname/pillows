@@ -1,0 +1,15 @@
+from PIL import Image
+
+
+def check_format(path):
+    try:
+        image = Image.open(path)
+        print(image.format)
+        image.verify()
+
+    except:
+        print('Not an image')
+
+check_format('/home/ropranam/PycharmProjects/13.01.20/pillow6.py')
+check_format('/Синий кот-1.txt')
+check_format('/home/ropranam/PycharmProjects/13.01.20/newsave.png')
