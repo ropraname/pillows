@@ -1,0 +1,27 @@
+from PIL import Image
+image = Image.open('/Синий кот-1.txt')
+width = image.size[0]
+height = image.size[1]
+filt = input()
+
+if filt == '1':
+    for pix_x in range(width):
+        for pix_y in range(height):
+            color = image.getpixel((pix_x, pix_y))
+            if color[0] >= color[1] and color[0] >= color[2]:
+                image.putpixel((pix_x, pix_y), (color[2], color[0], color[1]))
+            if color[1] >= color[0] and color[1] >= color[2]:
+                image.putpixel((pix_x, pix_y), (color[1], color[0], color[2]))
+            if color[2] >= color[0] and color[2] >= color[1]:
+                image.putpixel((pix_x, pix_y), (color[2], color[0], color[1]))
+if filt == '2':
+    for pix_x in range(width):
+        for pix_y in range(height):
+            color = image.getpixel((pix_x, pix_y))
+            if color[0] >= color[1] and color[0] >= color[2]:
+                image.putpixel((pix_x, pix_y), (color[1], color[2], color[0]))
+            if color[1] >= color[0] and color[1] >= color[2]:
+                image.putpixel((pix_x, pix_y), (color[2], color[1], color[0]))
+            if color[2] >= color[0] and color[2] >= color[1]:
+                image.putpixel((pix_x, pix_y), (color[1], color[2], color[0]))
+image.save('newkotik.jpg')
