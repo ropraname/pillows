@@ -1,0 +1,13 @@
+from PIL import Image
+
+
+def pic_or_not(path):
+    img_or_not = Image.open(path)
+    try:
+        img_or_not.verify()
+        print(True)
+    except:
+        print(False)
+
+
+pic_or_not('newsave.png')
