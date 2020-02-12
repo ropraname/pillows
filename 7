@@ -1,0 +1,18 @@
+from PIL import Image
+
+size = (300, 300)
+back = (255, 255, 255)
+
+
+def convert_to_one_size(img):
+    back_g = Image.new("RGB", size, back)
+    img = img.resize(size, Image.ANTIALIAS)
+    img.putalpha(255)
+    back_g.paste(img, img)
+    return back_g.convert('P', palette=Image.ADAPTIVE, dither=1)
+
+
+images = list(map(Image.open, ('jpg2png/{}.png'.format(x) for x in range(3))))
+images = (map(convert_to_one_size, images))
+gif_kotic = Image.new('RGB', size, back)
+gif_kotic.save('temp1.gif', 'GIF', save_all=True, append_images=images)
