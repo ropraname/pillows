@@ -1,0 +1,18 @@
+from PIL import Image
+
+
+def filter_black_white(path_first_img, sec_img):
+    first_img = Image.open(path_first_img)
+    first_img = first_img.convert("RGBA")
+    x = first_img.size[0]
+    y = first_img.size[1]
+    for pix_x in range(x):
+        for pix_y in range(y):
+            color = first_img.getpixel((pix_x, pix_y))
+            if color == (255, 255, 255, 255) or color == (0, 0, 0, 255):
+                first_img.putpixel((pix_x, pix_y), (255, 255, 255, 0))
+    first_img.save(sec_img)
+
+
+filter_black_white('3242.jpg', 'prozrachnoe.png')
+
